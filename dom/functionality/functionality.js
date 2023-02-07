@@ -1,9 +1,10 @@
 var form= document.getElementById('addForm')
 var itemlist= document.getElementById('items')
+var filter= document.getElementById('filter')
 
 form.addEventListener('submit',addItem)
 itemlist.addEventListener('click',removeItem)
-
+filter.addEventListener('keyup',filterItem)
 function addItem(e){
     e.preventDefault()
     //get input value
@@ -44,4 +45,19 @@ function removeItem(e){
             itemlist.removeChild(li)
         }
     }
+}
+function filterItem(e){
+    var text=e.target.value.toLowerCase()
+    var items=itemlist.getElementsByTagName('li')
+    //converting html to array
+    Array.from(items).forEach(function(item){
+        var itemName=item.firstChild.textContent
+        if(itemName.toLowerCase().indexOf(text)!=-1){
+            item.style.display='block'
+        }
+        else{
+            item.style.display='none'
+        }
+    })
+
 }
