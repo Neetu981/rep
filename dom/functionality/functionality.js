@@ -9,6 +9,7 @@ function addItem(e){
     e.preventDefault()
     //get input value
     var newItem=document.getElementById('item').value 
+    var description=document.getElementById('description').value
 
     //create new li element
     var li=document.createElement('li')
@@ -16,6 +17,7 @@ function addItem(e){
 
     //add text node with input value
     li.appendChild(document.createTextNode(newItem))
+    li.appendChild(document.createTextNode(' '+description))
 
     // create delete button
     var deletebtn=document.createElement('button')
@@ -52,7 +54,8 @@ function filterItem(e){
     //converting html to array
     Array.from(items).forEach(function(item){
         var itemName=item.firstChild.textContent
-        if(itemName.toLowerCase().indexOf(text)!=-1){
+        var description=item.childNodes[1].textContent
+        if(itemName.toLowerCase().indexOf(text)!=-1||description.toLowerCase().indexOf(text)!=-1){
             item.style.display='block'
         }
         else{
