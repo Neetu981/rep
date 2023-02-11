@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <title>registration form</title>
+   <style>
+    form{
+        background-color: yellow;
+        text-align: center;
+    }
+    input{
+        width: 500px;
+        color: blue;
+    }
+    button{
+        background-color: orange;
+    }
+    fieldset{
+        width: fit-content;
+    }
+   </style>
+</head>
+<body>
+    <fieldset>
+    <form action="#" onsubmit="submit()">
+        <center><font size=7 color="red">BOOK A CALL<br/></font></center> 
+        <center><font size=5 color="blue">book a call and our representative will call you with in 1 hr of selected time</font></center> <br/><br/>
+
+        <label>Name</lable><br/>
+        <input type="text" name="username" required><br/>
+        <label>Email</label><br/>
+        <input type="email" name="email" required><br/>
+        <label>Phone</label><br/>
+        <input type="number" name="phone" required><br/>
+        <label>time for call</label><br/>
+        <input type="date" name="date"  required><br/><input type="time" name="time"registration><br/>
+        <button>Get a call</button>
+    </form>
+    </fieldset>
+   <script>
+    function submit(){
+            const name=document.getElementById("username").value
+            const phone=document.getElementById("phone").value
+            const date=document.getElementById("date").value
+            console.log(name)
+            console.log(phone)
+            console.log(date)
+        }
+
+   </script>
+</body>
+</html>

@@ -111,7 +111,11 @@ header {
         const email=event.target.email.value
         localStorage.setItem('name',name)
         localStorage.setItem('email',email)
-
+        obj={
+          name:name,
+          email:email
+        }
+        localStorage.setItem('userdetails',JSON.stringify(obj))
       }
     </script>
   </body>
