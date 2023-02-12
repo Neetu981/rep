@@ -96,7 +96,7 @@ header {
         
         <div>
           <label for="name">Name:</label>
-          <input type="text" id="name" name="username">
+          <input type="text" id="username" name="name">
         </div>
         <div>
           <label for="email">Email:</label>
@@ -114,13 +114,13 @@ header {
     <script>
       function saveToLocalStorage(event){
         event.preventDefault()
-        const name =event.target.username.value
+        const name =event.target.name.value
         const email=event.target.email.value
         const phone=event.target.phone.value
         obj={
           name:name,
           email:email,
-          phone_number:phone
+          phone:phone
         }
         localStorage.setItem(email,JSON.stringify(obj))
         showUserOnScreen(obj)
@@ -128,7 +128,7 @@ header {
 function showUserOnScreen(obj){
   const parentElem=document.querySelector('#listOfItems')
   const childElem=document.createElement('li')
-  childElem.textContent=obj.name+' - '+obj.email+' - '+obj.phone_number
+  childElem.textContent=obj.name+' - '+obj.email+' - '+obj.phone
 
   const deletebtn=document.createElement('input')
   deletebtn.type='button'
@@ -137,6 +137,22 @@ function showUserOnScreen(obj){
     localStorage.removeItem(obj.email)
     parentElem.removeChild(childElem)
   }
+
+
+  const editbtn=document.createElement('input')
+  editbtn.type='button'
+  editbtn.value='Edit'
+  editbtn.onclick=()=>{
+    
+    localStorage.removeItem(obj.email)
+    parentElem.removeChild(childElem)
+    username.value=obj.name
+    email.value=obj.email
+    phnno.value=obj.phone
+  }
+
+  childElem.appendChild(editbtn)
+
   childElem.appendChild(deletebtn)
   parentElem.appendChild(childElem)
 } 
