@@ -16,19 +16,19 @@
             <div class="col-auto">
                 <label>Choose Expenseamount:</label>
             </div>
-            <div class="col-2 input-group-sm input-group-text form-select-sm"><input type="number" name="amount" class="form-control"
+            <div class="col-2 input-group-sm input-group-text form-select-sm"><input type="number" name="amount" id="amountId" class="form-control"
                     required></div>
 
             <div class="col-auto">
                 <label class="form-label"> Choose Discription :</label>
             </div>
-            <div class="col-1"> <input type="text" name="discription" class="form-control" required>
+            <div class="col-1"> <input type="text" name="discription" id="discriptionId" class="form-control" required>
             </div>
             <div class="col-auto">
                 <label class="form-label"> Choose a category:</label>
             </div>
 
-            <div class="col-auto"><select class="col-auto form-label form-select" name="category">
+            <div class="col-auto"><select class="col-auto form-label form-select" name="category" id="categoryId">
                     <option>fuel</option>
                     <option>food</option>
                     <option>electricity</option>
@@ -37,7 +37,7 @@
             </div>
             <div class="col-auto">
                 
-                <button class="btn btn-secondary btn-sm">Add expense</button>
+                <button class="btn btn-secondary">Add expense</button>
             </div>
         </div>
         <ul id="list">
@@ -62,7 +62,31 @@
             function showOnScreen(obj){
                 const parentElem=document.getElementById('list')    
                 const childElem=document.createElement('li')
-                childElem.textContent=obj.Expenseamount+' - '+obj.discription+' - '+obj.category
+
+
+                const deleteBtn=document.createElement('input')
+                deleteBtn.type='button'
+                deleteBtn.value='Delete Expense'
+                deleteBtn.onclick=()=>{
+                    localStorage.removeItem(obj.Expenseamount)
+                    parentElem.removeChild(childElem)
+                }
+
+
+                const editBtn=document.createElement('input')
+                editBtn.type='button'
+                editBtn.value='Edit Expense'
+                editBtn.onclick=()=>{
+                    localStorage.removeItem(obj.Expenseamount)
+                    parentElem.removeChild(childElem)
+                    document.getElementById('amountId').value=obj.Expenseamount
+                    document.getElementById('discriptionId').value=obj.Discription
+                    document.getElementById('categoryId').value=obj.category
+                }
+                
+                childElem.textContent=obj.Expenseamount+' - '+obj.Discription+' - '+obj.category
+                childElem.appendChild(deleteBtn)
+                childElem.appendChild(editBtn)
                 parentElem.appendChild(childElem)
 
             }
